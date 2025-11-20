@@ -1,0 +1,2104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Café Elementos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #000;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            background: white;
+            padding: 1.2rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 3rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            cursor: pointer;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle fill="%23F59026" cx="50" cy="50" r="45"/><path fill="white" d="M30,40 Q50,20 70,40 Q50,60 30,40 M40,50 Q50,40 60,50 Q50,60 40,50" stroke="white" stroke-width="2"/></svg>') center/contain no-repeat;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+        }
+
+        .logo-text .main {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #000;
+        }
+
+        .logo-text .sub {
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: #000;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        nav a {
+            color: #000;
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.3s;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        nav a:hover {
+            color: #F59026;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .principal-text {
+            font-style: italic;
+            color: #999;
+            font-size: 1.1rem;
+        }
+
+        .cart-icon {
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            position: relative;
+            font-size: 1.5rem;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #C0FC4F;
+            color: #000;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+
+        /* Page Content */
+        .page-content {
+            margin-top: 80px;
+            min-height: calc(100vh - 80px);
+        }
+
+        /* Welcome Page */
+        .welcome-section {
+            background: white;
+            padding: 4rem 3rem;
+            text-align: center;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .welcome-content {
+            max-width: 800px;
+        }
+
+        .welcome-content h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            color: #000;
+        }
+
+        .welcome-content p {
+            font-size: 1.2rem;
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .welcome-btn {
+            padding: 1rem 3rem;
+            background: #C0FC4F;
+            border: none;
+            color: #000;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s;
+            border-radius: 4px;
+        }
+
+        .welcome-btn:hover {
+            background: #F59026;
+            transform: translateY(-2px);
+        }
+
+        /* Store Section */
+        .store-section {
+            background: white;
+            min-height: calc(100vh - 80px);
+        }
+
+        .store-hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 400"><rect fill="%234a2c2a" width="1400" height="400"/><circle fill="%236B4423" cx="300" cy="200" r="100" opacity="0.5"/><circle fill="%233E2723" cx="1100" cy="200" r="120" opacity="0.5"/></svg>');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .breadcrumb {
+            position: absolute;
+            top: 100px;
+            left: 3rem;
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .store-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 3rem;
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 3rem;
+        }
+
+        .sidebar {
+            background: rgba(0,0,0,0.05);
+            padding: 2rem;
+            border-radius: 8px;
+            height: fit-content;
+        }
+
+        .sidebar h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .filter-section {
+            margin-bottom: 2rem;
+        }
+
+        .filter-section h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .filter-option {
+            text-decoration: underline;
+            color: #000;
+            cursor: pointer;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .price-filter {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .price-filter input {
+            width: 80px;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .products-main {
+            flex: 1;
+        }
+
+        .products-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .products-header h2 {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .products-info {
+            font-size: 0.95rem;
+            color: #666;
+        }
+
+        .sort-select {
+            padding: 0.6rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: #C0FC4F;
+            color: #000;
+            padding: 0.4rem 1rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border-radius: 4px;
+            z-index: 10;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 300px;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 70%;
+            height: 70%;
+            object-fit: contain;
+        }
+
+        .add-to-cart-btn {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            width: 45px;
+            height: 45px;
+            background: #C0FC4F;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            font-weight: 700;
+            transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .add-to-cart-btn:hover {
+            background: #F59026;
+            transform: scale(1.1);
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-name {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .product-price {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #F59026;
+            margin-bottom: 0.8rem;
+        }
+
+        .product-weight {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .weight-btn {
+            padding: 0.4rem 0.8rem;
+            border: 1px solid #ddd;
+            background: white;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s;
+            border-radius: 4px;
+        }
+
+        .weight-btn:hover, .weight-btn.active {
+            background: #000;
+            color: white;
+            border-color: #000;
+        }
+
+        /* Hero Section for Home */
+        .hero {
+            background: #000;
+            color: white;
+            padding: 4rem 3rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            font-size: 1rem;
+            font-weight: 300;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .newsletter {
+            margin-top: 2rem;
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            align-items: center;
+            max-width: 600px;
+            margin: 2rem auto 0;
+        }
+
+        .newsletter input {
+            flex: 1;
+            padding: 0.9rem 1.5rem;
+            border: 1px solid #333;
+            background: #000;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+        }
+
+        .newsletter button {
+            padding: 0.9rem 2.5rem;
+            background: #C0FC4F;
+            border: none;
+            color: #000;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+            transition: transform 0.2s;
+        }
+
+        .newsletter button:hover {
+            transform: scale(1.05);
+        }
+
+        /* Gallery */
+        .section-title {
+            padding: 4rem 3rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            color: #666;
+            font-size: 1rem;
+            font-weight: 400;
+        }
+
+        .section-title a {
+            color: #000;
+            text-decoration: underline;
+            font-weight: 500;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0;
+            max-width: 1400px;
+            margin: 0 auto 4rem;
+            padding: 0 3rem;
+        }
+
+        .gallery-item {
+            height: 400px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* About Section */
+        .about-section {
+            background: #F59026;
+            padding: 4rem 3rem;
+        }
+
+        .about-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-content h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: white;
+        }
+
+        .about-content p {
+            color: white;
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 400px;
+            background: #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: #000;
+            color: white;
+            padding: 4rem 3rem;
+        }
+
+        .contact-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .contact-container h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .contact-icon {
+            width: 24px;
+            height: 24px;
+            color: #C0FC4F;
+            font-size: 1.5rem;
+        }
+
+        .contact-item div {
+            flex: 1;
+        }
+
+        .contact-item h3 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            color: #C0FC4F;
+        }
+
+        .contact-item p {
+            font-size: 0.95rem;
+            font-weight: 400;
+            line-height: 1.6;
+        }
+
+        .contact-form {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            padding: 1rem;
+            background: #111;
+            border: 1px solid #333;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+            border-radius: 4px;
+        }
+
+        .contact-form textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            padding: 1rem 2.5rem;
+            background: #C0FC4F;
+            border: none;
+            color: #000;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            justify-self: end;
+            transition: all 0.3s;
+            border-radius: 4px;
+        }
+
+        .submit-btn:hover {
+            background: #F59026;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 400px;
+            background: #222;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-top: 2rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #000;
+            color: white;
+            padding: 3rem 3rem 2rem;
+            border-top: 1px solid #222;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-logo {
+            font-size: 4rem;
+            font-weight: 800;
+            color: white;
+            line-height: 1;
+            margin: 2rem auto;
+            text-align: center;
+        }
+
+        .footer-info p {
+            font-size: 0.9rem;
+            color: #999;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: #999;
+            text-decoration: none;
+            font-size: 0.9rem;
+            line-height: 2.2;
+            transition: color 0.3s;
+            cursor: pointer;
+            display: block;
+        }
+
+        .footer-section a:hover {
+            color: #C0FC4F;
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid #222;
+            text-align: center;
+            color: #666;
+            font-size: 0.85rem;
+        }
+
+        /* Cart Modal */
+        .cart-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 450px;
+            height: 100vh;
+            background: white;
+            box-shadow: -5px 0 20px rgba(0,0,0,0.3);
+            z-index: 2000;
+            flex-direction: column;
+        }
+
+        .cart-modal.active {
+            display: flex;
+        }
+
+        .cart-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1999;
+        }
+
+        .cart-overlay.active {
+            display: block;
+        }
+
+        .cart-header {
+            padding: 2rem;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-header h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1.5rem;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+            align-items: center;
+        }
+
+        .cart-item-image {
+            width: 80px;
+            height: 80px;
+            background: #f5f5f5;
+            border-radius: 8px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .cart-item-weight {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .cart-item-price {
+            font-weight: 700;
+            color: #F59026;
+            font-size: 1rem;
+        }
+
+        .cart-item-remove {
+            background: none;
+            border: none;
+            color: #999;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .cart-footer {
+            padding: 1.5rem 2rem;
+            border-top: 2px solid #eee;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 1rem;
+            background: #C0FC4F;
+            border: none;
+            color: #000;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s;
+            border-radius: 4px;
+        }
+
+        .checkout-btn:hover {
+            background: #F59026;
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 3rem 2rem;
+            color: #999;
+        }
+
+        /* Checkout Modal */
+        .checkout-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            background: white;
+            border-radius: 12px;
+            z-index: 3000;
+            overflow-y: auto;
+        }
+
+        .checkout-modal.active {
+            display: block;
+        }
+
+        .checkout-header {
+            padding: 2rem;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .checkout-content {
+            padding: 2rem;
+        }
+
+        .checkout-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .form-group input {
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+        }
+
+        .order-summary {
+            background: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+        }
+
+        .order-summary h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.8rem;
+            font-size: 0.95rem;
+        }
+
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 1rem;
+            border-top: 2px solid #ddd;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-top: 1rem;
+        }
+
+        .confirm-btn {
+            width: 100%;
+            padding: 1rem;
+            background: #C0FC4F;
+            border: none;
+            color: #000;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            border-radius: 4px;
+            margin-top: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .confirm-btn:hover {
+            background: #F59026;
+        }
+
+        /* Success Modal */
+        .success-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 500px;
+            background: white;
+            border-radius: 12px;
+            padding: 3rem 2rem;
+            text-align: center;
+            z-index: 3001;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+
+        .success-modal.active {
+            display: block;
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: #C0FC4F;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2.5rem;
+        }
+
+        .success-modal h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .success-modal p {
+            color: #666;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
+            background: #C0FC4F;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            cursor: pointer;
+            z-index: 999;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .whatsapp-btn:hover {
+            background: #F59026;
+            transform: scale(1.1);
+        }
+
+        /* Chat Button & Window */
+        .chat-button {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #C0FC4F;
+            color: #000;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            cursor: pointer;
+            z-index: 999;
+            transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(192, 252, 79, 0.4);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .chat-button:hover {
+            background: #F59026;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(245, 144, 38, 0.4);
+        }
+
+        .chat-icon {
+            font-size: 1.5rem;
+        }
+
+        .chat-text {
+            white-space: nowrap;
+        }
+
+        .chat-window {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 350px;
+            height: 500px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            z-index: 1000;
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chat-window.active {
+            display: flex;
+        }
+
+        .chat-header {
+            background: #000;
+            color: white;
+            padding: 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .chat-header h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .chat-status {
+            font-size: 0.8rem;
+            color: #C0FC4F;
+            margin: 0;
+        }
+
+        .close-chat {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0;
+            line-height: 1;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 1.5rem;
+            overflow-y: auto;
+            background: #f5f5f5;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .chat-time {
+            text-align: center;
+            color: #999;
+            font-size: 0.75rem;
+            margin: 0.5rem 0;
+        }
+
+        .chat-message {
+            max-width: 80%;
+            padding: 0.8rem 1rem;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            word-wrap: break-word;
+        }
+
+        .chat-message.received {
+            background: white;
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+        }
+
+        .chat-message.sent {
+            background: #C0FC4F;
+            color: #000;
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+            margin-left: auto;
+        }
+
+        .chat-message.sent-status {
+            font-size: 0.7rem;
+            color: #666;
+            text-align: right;
+            margin-top: -0.5rem;
+            padding-right: 0.5rem;
+        }
+
+        .chat-input-container {
+            padding: 1rem;
+            background: white;
+            border-top: 1px solid #eee;
+            display: flex;
+            gap: 0.8rem;
+        }
+
+        .chat-input-container input {
+            flex: 1;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+        }
+
+        .chat-input-container button {
+            background: #C0FC4F;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .chat-input-container button:hover {
+            background: #F59026;
+            transform: scale(1.05);
+        }
+
+        .close-modal {
+            padding: 0.8rem 2rem;
+            background: #000;
+            border: none;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .close-modal:hover {
+            background: #333;
+        }
+
+        @media (max-width: 968px) {
+            nav ul {
+                display: none;
+            }
+
+            .gallery,
+            .about-container,
+            .contact-grid,
+            .footer-content,
+            .store-content {
+                grid-template-columns: 1fr;
+            }
+
+            .cart-modal {
+                width: 100%;
+            }
+
+            .sidebar {
+                display: none;
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo" onclick="showPage('inicio')">
+                <div class="logo-icon"></div>
+                <div class="logo-text">
+                    <span class="main">Café</span>
+                    <span class="sub">Elementos</span>
+                </div>
+            </div>
+            <ul>
+                <li><a onclick="showPage('bienvenido')">Bienvenido</a></li>
+                <li><a onclick="showPage('inicio')">Inicio</a></li>
+                <li><a onclick="showPage('tienda')">Tienda</a></li>
+                <li><a onclick="showPage('productos')">Productos</a></li>
+                <li><a onclick="showPage('nosotros')">Más</a></li>
+            </ul>
+            <div class="nav-right">
+                <span class="principal-text">Principal</span>
+                <div class="cart-icon" onclick="toggleCart()">
+                    🛒
+                    <span class="cart-count" id="cartCount">0</span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Chat Button -->
+    <div class="chat-button" id="chatButton" onclick="toggleChat()">
+        <span class="chat-text">¡Vamos a chatear!</span>
+        <span class="chat-icon">💬</span>
+    </div>
+
+    <!-- Chat Window -->
+    <div class="chat-window" id="chatWindow">
+        <div class="chat-header">
+            <div>
+                <h3>Café Elementos</h3>
+                <p class="chat-status">● Te responderemos tan pronto como podamos</p>
+            </div>
+            <button class="close-chat" onclick="toggleChat()">✕</button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="chat-time">11:03 AM</div>
+            <div class="chat-message received">
+                <p>¡Hola! Bienvenido a Café Elementos. ¿En qué podemos ayudarte hoy?</p>
+            </div>
+        </div>
+        <div class="chat-input-container">
+            <input type="text" id="chatInput" placeholder="Escribe tu mensaje..." onkeypress="handleChatEnter(event)">
+            <button onclick="sendChatMessage()">
+                <span style="font-size: 1.2rem;">📤</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Welcome Page -->
+    <div id="page-bienvenido" class="page-content">
+        <div class="welcome-section">
+            <div class="welcome-content">
+                <h1>Bienvenido a Café Elementos</h1>
+                <p>El lugar donde el café cobra vida. Nos dedicamos a ofrecer café de alta calidad con un toque especial que deleita tus sentidos. Descubre nuestra pasión por el café en cada taza que preparamos.</p>
+                <button class="welcome-btn" onclick="showPage('inicio')">Explorar Nuestro Café</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Home Page -->
+    <div id="page-inicio" class="page-content hidden">
+        <section class="hero">
+            <div class="hero-content">
+                <h1>SUSCRÍBETE</h1>
+                <p>Regístrate al correo electrónico para no perderte de nuestros eventos 2025</p>
+                <div class="newsletter">
+                    <input type="email" id="newsletterEmail" placeholder="Introduce tu correo electrónico aquí">
+                    <button onclick="subscribeNewsletter()">Enviar</button>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-title">
+            <h2>EXPLORA<br>NUESTRO CAFÉ</h2>
+            <p>Descubre el sabor del café perfecto <a onclick="showPage('productos')">VER MENÚ</a></p>
+        </div>
+        
+        <div class="gallery">
+            <div class="gallery-item" style="background: url('https://scontent.fvsa2-1.fna.fbcdn.net/v/t39.30808-6/495135830_122164211168559428_2218339933095604836_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=RwbIZxZAIZ0Q7kNvwEMeYLw&_nc_oc=AdkQjei_K8IlRn2iakT-2CsLJv7th8m5HgvWhg3Al0G49HzStadVT-krNtCLSOgeNQQ&_nc_zt=23&_nc_ht=scontent.fvsa2-1.fna&_nc_gid=JfOZsHuIC5Znojg-2hkeAg&oh=00_AfjJP97dhzKQNe1JH_t2aPY6LBl7UYIdcrspVX1xZ39o9w&oe=692546BD') center/cover;"></div>
+            <div class="gallery-item" style="background: url('https://scontent.fvsa2-1.fna.fbcdn.net/v/t39.30808-6/495356072_122164201712559428_8906691377449320149_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=SjhqKfhcfIQQ7kNvwG-x1wQ&_nc_oc=Adm50GxE_nYuQBCVQ5uV7fVUzvmTToww4JgINsiNP3NPOIdLIcaiMTuXJdDiIYdy6rg&_nc_zt=23&_nc_ht=scontent.fvsa2-1.fna&_nc_gid=QdjYsTNOV-a2U_bHMmN_gw&oh=00_Afi7_fg2lP7V31g0jCjU8eMgO-6OWFdl7gURETpZHUVUkw&oe=6925347B') center/cover;"></div>
+        </div>
+
+        <section class="about-section">
+            <div class="about-container">
+                <div class="about-content">
+                    <h2>Acerca de Nosotros</h2>
+                    <p>Bienvenido a Café Elementos, el lugar donde el café cobra vida. Nos dedicamos a ofrecer café de alta calidad con un toque especial que deleita tus sentidos. Nuestra pasión por el café se refleja en cada taza que preparamos, buscando brindarte una experiencia única en cada sorbo.</p>
+                    <p>En Café Elementos, nos esforzamos por crear un ambiente acogedor donde te sientas como en casa. Nuestro equipo de baristas expertos está listo para guiarte a través de nuestro menú y recomendarte la combinación perfecta para tu paladar. ¡Ven y disfruta de la verdadera esencia del café con nosotros!</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://scontent.fvsa2-1.fna.fbcdn.net/v/t39.30808-6/486123416_1119811583493948_2701088069330973425_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_ohc=Zdmx1EIDYxQQ7kNvwEYHLOF&_nc_oc=AdlGaNFFZGmmx64Wbc_yiBa0ZTaLoCQ4eByDN6xZZitqqZVnIWSh8XJysehh6acu3Ec&_nc_zt=23&_nc_ht=scontent.fvsa2-1.fna&_nc_gid=3m912XSUt8EhgHEn4H0p6Q&oh=00_AfiGExb2UZTQ9P35r2G-xTdcfHBh2isavTEMoEVq5DcmJw&oe=69256163" alt="Café Elementos" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-section">
+            <div class="contact-container">
+                <h2>Contáctanos</h2>
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <div>
+                                <h3>Dirección</h3>
+                                <p>Av Paseo Tabasco 1124, Jesus Garcia, 86040 Villahermosa, Tab.</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">📞</div>
+                            <div>
+                                <h3>Teléfono</h3>
+                                <p>993 426 3253</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">✉️</div>
+                            <div>
+                                <h3>Correo</h3>
+                                <p>cafelementos@gmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-form">
+                        <div class="form-row">
+                            <input type="text" placeholder="Nombre" id="contactName">
+                            <input type="text" placeholder="Apellido" id="contactLastName">
+                        </div>
+                        <input type="email" placeholder="Correo" id="contactEmail">
+                        <input type="tel" placeholder="Teléfono" id="contactPhone">
+                        <textarea placeholder="Mensaje" id="contactMessage"></textarea>
+                        <button class="submit-btn" onclick="sendContact()">Enviar</button>
+                    </div>
+                </div>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3798.234567!2d-92.937!3d17.989!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTfCsDU5JzIwLjQiTiA5MsKwNTYnMTMuMiJX!5e0!3m2!1ses!2smx!4v1234567890" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Store/Tienda Page -->
+    <div id="page-tienda" class="page-content hidden">
+        <div class="store-section">
+            <div class="store-hero">
+                <div class="breadcrumb">
+                    <a onclick="showPage('inicio')">Inicio</a> > Todos los productos
+                </div>
+                <h1 style="font-size: 3rem; font-weight: 800;">Todos los productos</h1>
+            </div>
+            <div class="store-content">
+                <aside class="sidebar">
+                    <h3>Explorar por</h3>
+                    <div class="filter-section">
+                        <h4>Todos los productos</h4>
+                    </div>
+                    <div class="filter-section">
+                        <h4>Filtrar por</h4>
+                        <div class="filter-option">Precio</div>
+                        <div class="price-filter">
+                            <input type="number" value="120" min="0"> MXN -
+                            <input type="number" value="1050" min="0"> MXN
+                        </div>
+                    </div>
+                    <div class="filter-section">
+                        <h4>Tamaño</h4>
+                    </div>
+                </aside>
+                <div class="products-main">
+                    <div class="products-header">
+                        <h2>Todos los productos</h2>
+                        <div style="display: flex; align-items: center; gap: 2rem;">
+                            <span class="products-info"><span id="totalProducts">3</span> productos</span>
+                            <select class="sort-select">
+                                <option>Ordenar por: Recomendados</option>
+                                <option>Precio: Menor a Mayor</option>
+                                <option>Precio: Mayor a Menor</option>
+                                <option>Nombre: A-Z</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="products-grid" id="storeProductsGrid"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Products Page -->
+    <div id="page-productos" class="page-content hidden">
+        <section style="padding: 6rem 3rem 4rem; background: white;">
+            <div style="max-width: 1400px; margin: 0 auto;">
+                <h2 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 3rem; text-align: center;">Nuestros Productos</h2>
+                <div class="products-grid" id="productsGrid"></div>
+            </div>
+        </section>
+    </div>
+
+    <!-- About Page -->
+    <div id="page-nosotros" class="page-content hidden">
+        <section class="about-section" style="min-height: calc(100vh - 80px); padding: 6rem 3rem;">
+            <div class="about-container">
+                <div class="about-content">
+                    <h2>Acerca de Nosotros</h2>
+                    <p>Bienvenido a Café Elementos, el lugar donde el café cobra vida. Nos dedicamos a ofrecer café de alta calidad con un toque especial que deleita tus sentidos. Nuestra pasión por el café se refleja en cada taza que preparamos, buscando brindarte una experiencia única en cada sorbo.</p>
+                    <p>En Café Elementos, nos esforzamos por crear un ambiente acogedor donde te sientas como en casa. Nuestro equipo de baristas expertos está listo para guiarte a través de nuestro menú y recomendarte la combinación perfecta para tu paladar. ¡Ven y disfruta de la verdadera esencia del café con nosotros!</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://scontent.fvsa2-1.fna.fbcdn.net/v/t39.30808-6/486123416_1119811583493948_2701088069330973425_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_ohc=Zdmx1EIDYxQQ7kNvwEYHLOF&_nc_oc=AdlGaNFFZGmmx64Wbc_yiBa0ZTaLoCQ4eByDN6xZZitqqZVnIWSh8XJysehh6acu3Ec&_nc_zt=23&_nc_ht=scontent.fvsa2-1.fna&_nc_gid=3m912XSUt8EhgHEn4H0p6Q&oh=00_AfiGExb2UZTQ9P35r2G-xTdcfHBh2isavTEMoEVq5DcmJw&oe=69256163" alt="Café Elementos" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+            </div>
+        </section>
+        
+        <section class="contact-section">
+            <div class="contact-container">
+                <h2>Contáctanos</h2>
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <div>
+                                <h3>Dirección</h3>
+                                <p>Av Paseo Tabasco 1124, Jesus Garcia, 86040 Villahermosa, Tab.</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">📞</div>
+                            <div>
+                                <h3>Teléfono</h3>
+                                <p>993 426 3253</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">✉️</div>
+                            <div>
+                                <h3>Correo</h3>
+                                <p>cafelementos@gmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-form">
+                        <div class="form-row">
+                            <input type="text" placeholder="Nombre">
+                            <input type="text" placeholder="Apellido">
+                        </div>
+                        <input type="email" placeholder="Correo">
+                        <input type="tel" placeholder="Teléfono">
+                        <textarea placeholder="Mensaje"></textarea>
+                        <button class="submit-btn" onclick="sendContact()">Enviar</button>
+                    </div>
+                </div>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3798.234567!2d-92.937!3d17.989!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTfCsDU5JzIwLjQiTiA5MsKwNTYnMTMuMiJX!5e0!3m2!1ses!2smx!4v1234567890" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Cart Modal -->
+    <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-header">
+            <h2>Carrito</h2>
+            <button class="close-cart" onclick="toggleCart()">✕</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="empty-cart">
+                <p>Tu carrito está vacío</p>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">$0.00 MXN</span>
+            </div>
+            <button class="checkout-btn" onclick="openCheckout()">Proceder al Pago</button>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div class="cart-overlay" id="checkoutOverlay" onclick="closeCheckout()"></div>
+    <div class="checkout-modal" id="checkoutModal">
+        <div class="checkout-header">
+            <h2>Finalizar Compra</h2>
+            <button class="close-cart" onclick="closeCheckout()">✕</button>
+        </div>
+        <div class="checkout-content">
+            <form class="checkout-form" id="checkoutForm">
+                <div class="form-group">
+                    <label>Nombre Completo *</label>
+                    <input type="text" required id="checkoutName">
+                </div>
+                <div class="form-group">
+                    <label>Correo Electrónico *</label>
+                    <input type="email" required id="checkoutEmail">
+                </div>
+                <div class="form-group">
+                    <label>Teléfono *</label>
+                    <input type="tel" required id="checkoutPhone">
+                </div>
+                <div class="form-group">
+                    <label>Dirección de Entrega *</label>
+                    <input type="text" required id="checkoutAddress">
+                </div>
+                <div class="form-group">
+                    <label>Ciudad *</label>
+                    <input type="text" required id="checkoutCity">
+                </div>
+                <div class="form-group">
+                    <label>Código Postal *</label>
+                    <input type="text" required id="checkoutPostal">
+                </div>
+
+                <h3 style="margin-top: 2rem; margin-bottom: 1rem; font-size: 1.2rem;">Información de Pago</h3>
+                
+                <div class="form-group">
+                    <label>Número de Tarjeta *</label>
+                    <input type="text" required id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19">
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div class="form-group">
+                        <label>Fecha de Vencimiento *</label>
+                        <input type="text" required id="cardExpiry" placeholder="MM/AA" maxlength="5">
+                    </div>
+                    <div class="form-group">
+                        <label>CVV *</label>
+                        <input type="text" required id="cardCVV" placeholder="123" maxlength="4">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Nombre en la Tarjeta *</label>
+                    <input type="text" required id="cardName">
+                </div>
+                
+                <div class="order-summary">
+                    <h3>Resumen del Pedido</h3>
+                    <div id="orderSummaryItems"></div>
+                    <div class="summary-total">
+                        <span>Total:</span>
+                        <span id="orderTotal">$0.00 MXN</span>
+                    </div>
+                </div>
+                
+                <button type="button" class="confirm-btn" onclick="confirmOrder()">Confirmar Pedido</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="cart-overlay" id="successOverlay"></div>
+    <div class="success-modal" id="successModal">
+        <div class="success-icon">✓</div>
+        <h2>¡Pedido Confirmado!</h2>
+        <p>Tu pedido ha sido procesado exitosamente. Hemos enviado la confirmación y el ticket a tu correo electrónico.</p>
+        <p><strong>Número de Orden: <span id="orderNumber"></span></strong></p>
+        <button class="close-modal" onclick="closeSuccess()">Cerrar</button>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <p style="color: white; font-size: 0.95rem; margin-bottom: 1rem;">cafelementos@gmail.com</p>
+                <p style="color: white; font-size: 0.95rem; margin-bottom: 2rem;">Villahermosa, Tab., México</p>
+                <p style="color: white; font-size: 0.95rem; margin-bottom: 0.5rem;">993 426 3253</p>
+                <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                    <a href="#" style="color: white; font-size: 1.3rem;">📘</a>
+                    <a href="#" style="color: white; font-size: 1.3rem;">📷</a>
+                    <a href="#" style="color: white; font-size: 1.3rem;">✖️</a>
+                    <a href="#" style="color: white; font-size: 1.3rem;">🎵</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <ul>
+                    <li><a>Política de Privacidad</a></li>
+                    <li><a>Declaración de Accesibilidad</a></li>
+                    <li><a>Términos y Condiciones</a></li>
+                    <li><a>Política de Reembolso</a></li>
+                    <li><a>Política de Envío</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-logo">Café Elementos</div>
+        <div class="footer-bottom">
+            © 2035 by Café Elementos. Powered and secured by Wix
+        </div>
+    </footer>
+
+    <script>
+        // Products Data
+        const products = [
+            {
+                id: 1,
+                name: 'Aldama, Chiapas',
+                origin: 'Cafeología Natural',
+                prices: { '1/4': 350, '1/2': 700, '1kg': 1400 },
+                image: '☕'
+            },
+            {
+                id: 2,
+                name: 'Tatetela, Veracruz',
+                origin: 'Lavado',
+                prices: { '1/4': 120, '1/2': 240, '1kg': 480 },
+                image: '☕'
+            },
+            {
+                id: 3,
+                name: 'Adelitas, Chiapas',
+                origin: 'Lavado',
+                prices: { '1/4': 120, '1/2': 240, '1kg': 480 },
+                image: '☕'
+            }
+        ];
+
+        let cart = [];
+        let currentPage = 'bienvenido';
+
+        // Initialize
+        function init() {
+            renderProducts();
+            renderStoreProducts();
+            showPage('bienvenido');
+        }
+
+        // Page Navigation
+        function showPage(pageName) {
+            const pages = ['bienvenido', 'inicio', 'tienda', 'productos', 'nosotros'];
+            pages.forEach(page => {
+                const pageEl = document.getElementById(`page-${page}`);
+                if (pageEl) {
+                    pageEl.classList.add('hidden');
+                }
+            });
+            
+            const targetPage = document.getElementById(`page-${pageName}`);
+            if (targetPage) {
+                targetPage.classList.remove('hidden');
+                currentPage = pageName;
+                window.scrollTo(0, 0);
+            }
+        }
+
+        // Render Products
+        function renderProducts() {
+            const container = document.getElementById('productsGrid');
+            container.innerHTML = products.map(product => `
+                <div class="product-card">
+                    <div class="product-badge">Nuevo</div>
+                    <div class="product-image">
+                        <div style="font-size: 4rem;">${product.image}</div>
+                        <button class="add-to-cart-btn" onclick="addToCart(${product.id}, '1/4')">+</button>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">${product.name}</div>
+                        <div class="product-price" id="price-${product.id}">${product.prices['1/4']}.00 MXN</div>
+                        <div class="product-weight">
+                            <button class="weight-btn active" onclick="selectWeight(${product.id}, '1/4')">1/4 kg</button>
+                            <button class="weight-btn" onclick="selectWeight(${product.id}, '1/2')">1/2 kg</button>
+                            <button class="weight-btn" onclick="selectWeight(${product.id}, '1kg')">1 kg</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderStoreProducts() {
+            const container = document.getElementById('storeProductsGrid');
+            container.innerHTML = products.map(product => `
+                <div class="product-card">
+                    <div class="product-badge">Nuevo</div>
+                    <div class="product-image">
+                        <div style="font-size: 4rem;">${product.image}</div>
+                        <button class="add-to-cart-btn" onclick="addToCart(${product.id}, '1/4')">+</button>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">${product.name}</div>
+                        <div class="product-price">${product.prices['1/4']}.00 MXN</div>
+                        <div class="product-weight">
+                            <button class="weight-btn active" onclick="selectWeight(${product.id}, '1/4')">1/4 kg</button>
+                            <button class="weight-btn" onclick="selectWeight(${product.id}, '1/2')">1/2 kg</button>
+                            <button class="weight-btn" onclick="selectWeight(${product.id}, '1kg')">1 kg</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Select Weight
+        function selectWeight(productId, weight) {
+            const product = products.find(p => p.id === productId);
+            const priceEl = document.getElementById(`price-${productId}`);
+            if (priceEl) {
+                priceEl.textContent = `${product.prices[weight]}.00 MXN`;
+            }
+            
+            document.querySelectorAll(`#page-productos .product-card:nth-child(${productId}) .weight-btn`).forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
+        // Cart Functions
+        function addToCart(productId, weight) {
+            const product = products.find(p => p.id === productId);
+            const existingItem = cart.find(item => item.id === productId && item.weight === weight);
+            
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push({
+                    id: productId,
+                    name: product.name,
+                    weight: weight,
+                    price: product.prices[weight],
+                    quantity: 1,
+                    image: 'https://scontent.fvsa2-1.fna.fbcdn.net/v/t39.30808-6/495601645_1198908208917618_4324142393229895495_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=a5f93a&_nc_ohc=LXQAJeKjCkkQ7kNvwFqblSH&_nc_oc=AdkL2rT9E5JKzvVmYsi5-gLaOLbuHT6JczBiQV2q7aCERwvnpKFL6Zr_pqRez0eVilI&_nc_zt=23&_nc_ht=scontent.fvsa2-1.fna&_nc_gid=HT-GbkexYubjTnC9fSSDrA&oh=00_AfiUM5WCTaSSWSi5eqGiH24eiM0wJkiRFN91bYEvjT7juw&oe=6925534E'
+                });
+            }
+            
+            updateCart();
+            alert(`${product.name} (${weight}) agregado al carrito`);
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCart();
+        }
+
+        function updateCart() {
+            const cartItems = document.getElementById('cartItems');
+            const cartCount = document.getElementById('cartCount');
+            const cartTotal = document.getElementById('cartTotal');
+            
+            cartCount.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<div class="empty-cart"><p>Tu carrito está vacío</p></div>';
+                cartTotal.textContent = '$0.00 MXN';
+                return;
+            }
+            
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            cartTotal.textContent = `${total.toFixed(2)} MXN`;
+            
+            cartItems.innerHTML = cart.map((item, index) => `
+                <div class="cart-item">
+                    <div class="cart-item-image">
+                        <div style="font-size: 2rem;">${item.image}</div>
+                    </div>
+                    <div class="cart-item-info">
+                        <div class="cart-item-name">${item.name}</div>
+                        <div class="cart-item-weight">${item.weight} - Cantidad: ${item.quantity}</div>
+                        <div class="cart-item-price">${(item.price * item.quantity).toFixed(2)} MXN</div>
+                    </div>
+                    <button class="cart-item-remove" onclick="removeFromCart(${index})">✕</button>
+                </div>
+            `).join('');
+        }
+
+        function toggleCart() {
+            const modal = document.getElementById('cartModal');
+            const overlay = document.getElementById('cartOverlay');
+            modal.classList.toggle('active');
+            overlay.classList.toggle('active');
+        }
+
+        // Checkout Functions
+        function openCheckout() {
+            if (cart.length === 0) {
+                alert('Tu carrito está vacío');
+                return;
+            }
+            
+            toggleCart();
+            
+            const modal = document.getElementById('checkoutModal');
+            const overlay = document.getElementById('checkoutOverlay');
+            const summaryItems = document.getElementById('orderSummaryItems');
+            const orderTotal = document.getElementById('orderTotal');
+            
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            
+            summaryItems.innerHTML = cart.map(item => `
+                <div class="summary-item">
+                    <span>${item.name} (${item.weight}) x${item.quantity}</span>
+                    <span>${(item.price * item.quantity).toFixed(2)} MXN</span>
+                </div>
+            `).join('');
+            
+            orderTotal.textContent = `${total.toFixed(2)} MXN`;
+            
+            modal.classList.add('active');
+            overlay.classList.add('active');
+        }
+
+        function closeCheckout() {
+            const modal = document.getElementById('checkoutModal');
+            const overlay = document.getElementById('checkoutOverlay');
+            modal.classList.remove('active');
+            overlay.classList.remove('active');
+        }
+
+        function confirmOrder() {
+            const name = document.getElementById('checkoutName').value;
+            const email = document.getElementById('checkoutEmail').value;
+            const phone = document.getElementById('checkoutPhone').value;
+            const address = document.getElementById('checkoutAddress').value;
+            const city = document.getElementById('checkoutCity').value;
+            const postal = document.getElementById('checkoutPostal').value;
+            const cardNumber = document.getElementById('cardNumber').value;
+            const cardExpiry = document.getElementById('cardExpiry').value;
+            const cardCVV = document.getElementById('cardCVV').value;
+            const cardName = document.getElementById('cardName').value;
+            
+            if (!name || !email || !phone || !address || !city || !postal || !cardNumber || !cardExpiry || !cardCVV || !cardName) {
+                alert('Por favor completa todos los campos');
+                return;
+            }
+            
+            // Validate card format
+            if (cardNumber.replace(/\s/g, '').length < 13) {
+                alert('Número de tarjeta inválido');
+                return;
+            }
+            
+            if (!/^\d{2}\/\d{2}$/.test(cardExpiry)) {
+                alert('Formato de fecha inválido (MM/AA)');
+                return;
+            }
+            
+            if (cardCVV.length < 3) {
+                alert('CVV inválido');
+                return;
+            }
+            
+            const orderNumber = 'CE' + Date.now().toString().slice(-8);
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            
+            // Prepare email content
+            const itemsList = cart.map(item => 
+                `${item.name} (${item.weight}) x${item.quantity} - ${(item.price * item.quantity).toFixed(2)} MXN`
+            ).join('\n');
+            
+            const emailBody = `
+CONFIRMACIÓN DE PEDIDO - CAFÉ ELEMENTOS
+========================================
+
+Número de Orden: ${orderNumber}
+Fecha: ${new Date().toLocaleDateString('es-MX')}
+
+DATOS DEL CLIENTE:
+------------------
+Nombre: ${name}
+Email: ${email}
+Teléfono: ${phone}
+Dirección: ${address}
+Ciudad: ${city}
+Código Postal: ${postal}
+
+PRODUCTOS ORDENADOS:
+--------------------
+${itemsList}
+
+TOTAL: ${total.toFixed(2)} MXN
+
+INFORMACIÓN DE PAGO:
+--------------------
+Tarjeta: **** **** **** ${cardNumber.slice(-4)}
+Titular: ${cardName}
+
+¡Gracias por tu compra!
+
+Tu pedido será procesado y enviado en las próximas 24-48 horas.
+Para cualquier duda, contáctanos al 993 426 3253 o responde a este correo.
+
+---
+Café Elementos
+Villahermosa, Tabasco, México
+cafelementos@gmail.com
+            `.trim();
+            
+            // Send email using EmailJS or similar service
+            // For demonstration, we'll use mailto (in production, use a proper email service)
+            const subject = `Confirmación de Pedido #${orderNumber} - Café Elementos`;
+            const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+            
+            // Also send to business email
+            const businessMailto = `mailto:cafelementos@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+            
+            // Open mailto links
+            window.open(mailtoLink, '_blank');
+            setTimeout(() => {
+                window.open(businessMailto, '_blank');
+            }, 1000);
+            
+            console.log('Orden confirmada:', {
+                orderNumber,
+                name,
+                email,
+                phone,
+                address,
+                city,
+                postal,
+                items: cart,
+                total,
+                cardLast4: cardNumber.slice(-4)
+            });
+            
+            closeCheckout();
+            
+            document.getElementById('orderNumber').textContent = orderNumber;
+            const successModal = document.getElementById('successModal');
+            const successOverlay = document.getElementById('successOverlay');
+            successModal.classList.add('active');
+            successOverlay.classList.add('active');
+            
+            cart = [];
+            updateCart();
+            
+            document.getElementById('checkoutForm').reset();
+        }
+
+        function closeSuccess() {
+            const modal = document.getElementById('successModal');
+            const overlay = document.getElementById('successOverlay');
+            modal.classList.remove('active');
+            overlay.classList.remove('active');
+        }
+
+        // Other Functions
+        function subscribeNewsletter() {
+            const email = document.getElementById('newsletterEmail').value;
+            if (email) {
+                alert('¡Gracias por suscribirte! Te enviaremos las últimas noticias a: ' + email);
+                document.getElementById('newsletterEmail').value = '';
+            } else {
+                alert('Por favor ingresa tu correo electrónico');
+            }
+        }
+
+        function sendContact() {
+            alert('¡Gracias por contactarnos! Te responderemos pronto.');
+        }
+
+        function openWhatsApp() {
+            window.open('https://wa.me/5219934263253', '_blank');
+        }
+
+        // Chat Functions
+        function toggleChat() {
+            const chatButton = document.getElementById('chatButton');
+            const chatWindow = document.getElementById('chatWindow');
+            
+            if (chatWindow.classList.contains('active')) {
+                chatWindow.classList.remove('active');
+                chatButton.style.display = 'flex';
+            } else {
+                chatWindow.classList.add('active');
+                chatButton.style.display = 'none';
+            }
+        }
+
+        function sendChatMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            
+            if (!message) return;
+            
+            const messagesContainer = document.getElementById('chatMessages');
+            
+            // Add user message
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'chat-message sent';
+            messageDiv.innerHTML = `<p>${message}</p>`;
+            messagesContainer.appendChild(messageDiv);
+            
+            // Add status
+            const statusDiv = document.createElement('div');
+            statusDiv.className = 'chat-message sent-status';
+            statusDiv.textContent = 'Enviado';
+            messagesContainer.appendChild(statusDiv);
+            
+            input.value = '';
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            
+            // Simulate response
+            setTimeout(() => {
+                const responseDiv = document.createElement('div');
+                responseDiv.className = 'chat-message received';
+                responseDiv.innerHTML = '<p>Gracias por tu mensaje. Un representante te atenderá pronto. ¿En qué más puedo ayudarte?</p>';
+                messagesContainer.appendChild(responseDiv);
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }, 1500);
+        }
+
+        function handleChatEnter(event) {
+            if (event.key === 'Enter') {
+                sendChatMessage();
+            }
+        }
+
+        // Card formatting
+        document.addEventListener('DOMContentLoaded', function() {
+            const cardNumberInput = document.getElementById('cardNumber');
+            if (cardNumberInput) {
+                cardNumberInput.addEventListener('input', function(e) {
+                    let value = e.target.value.replace(/\s/g, '');
+                    let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
+                    e.target.value = formattedValue;
+                });
+            }
+            
+            const cardExpiryInput = document.getElementById('cardExpiry');
+            if (cardExpiryInput) {
+                cardExpiryInput.addEventListener('input', function(e) {
+                    let value = e.target.value.replace(/\D/g, '');
+                    if (value.length >= 2) {
+                        value = value.slice(0, 2) + '/' + value.slice(2, 4);
+                    }
+                    e.target.value = value;
+                });
+            }
+        });
+
+        // Initialize on load
+        window.onload = init;
+    </script>
+</body>
+</html>
