@@ -6,9 +6,9 @@
 // CONFIGURACIÓN EMAILJS
 // ============================================
 // IMPORTANTE: Reemplaza estos valores con tus credenciales de EmailJS
-const EMAILJS_SERVICE_ID = 'service_xxxxxxx';  // Tu Service ID
-const EMAILJS_TEMPLATE_ID = 'template_xxxxxxx'; // Tu Template ID
-const EMAILJS_PUBLIC_KEY = 'xxxxxxxxxxxxxxx';   // Tu Public Key
+const EMAILJS_SERVICE_ID = 'service_ez74agp';  // Tu Service ID
+const EMAILJS_TEMPLATE_ID = 'template_rv4qwdj'; // Tu Template ID
+const EMAILJS_PUBLIC_KEY = 'nb75RxYtqPNBOw3O2';   // Tu Public Key
 
 // ============================================
 // DATOS DE PRODUCTOS
